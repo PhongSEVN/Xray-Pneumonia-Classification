@@ -67,7 +67,7 @@ function App() {
       {contextHolder}
       <div
         style={{
-          minHeight: "100vh",
+          minHeight: "100px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
