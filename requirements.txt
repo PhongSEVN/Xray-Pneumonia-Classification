@@ -1,0 +1,40 @@
+# ===========================================
+# REQUIREMENTS.TXT
+# Dự án: X-ray Pneumonia Classification
+# Mô tả: Các thư viện cần thiết cho phần Backend (Flask) và AI (TensorFlow)
+# ===========================================
+
+# --- Core AI Libraries ---
+tensorflow==2.15.0
+keras==2.15.0
+numpy==1.26.0
+pandas==2.2.0
+matplotlib==3.8.0
+seaborn==0.13.0
+scikit-learn==1.4.0
+opencv-python==4.9.0
+Pillow==9.5.0
+
+# --- Flask Backend ---
+flask==3.0.0
+flask-cors==4.0.0
+werkzeug==3.0.1
+
+# --- Utilities ---
+tqdm==4.66.1
+requests==2.31.0
+
+# --- Optional (chạy notebook hoặc EDA) ---
+jupyterlab==4.1.0
+notebook==7.1.0
+
+# ===========================================
+# FRONTEND (ReactJS)
+# Phần này cài riêng bằng npm, không cài qua pip.
+# Ghi chú để dễ đọc:
+#   react==18.2.0
+#   react-dom==18.2.0
+#   react-scripts==5.0.1
+#   axios==1.6.8
+#   bootstrap==5.3.0
+# ===========================================
