@@ -5,10 +5,10 @@
 Dự án **Phân loại viêm phổi từ ảnh X-Ray** ứng dụng **Deep Learning (TensorFlow/Keras)** và **AI Explainability (Grad-CAM)** nhằm hỗ trợ chẩn đoán bệnh viêm phổi qua ảnh X-quang ngực.
 Hệ thống cho phép người dùng **tải ảnh X-ray**, mô hình sẽ **phân tích và hiển thị vùng nghi ngờ**, đồng thời trả về kết quả **PNEUMONIA / NORMAL**.
 
-* 🧩 **Backend:** FastAPI (Python)
-* 🌐 **Frontend:** ReactJS
-* ⚙️ **Mô hình:** CNN (ResNet50, VGG16, MobileNetV2)
-* 📊 **Dataset:** [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
+- 🧩 **Backend:** FastAPI (Python)
+- 🌐 **Frontend:** ReactJS
+- ⚙️ **Mô hình:** CNN (ResNet50, DenseNet121, EfficientB3)
+- 📊 **Dataset:** [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/ghost5612/chest-x-ray-images-normal-and-pneumonia)
 
 ---
 
@@ -16,8 +16,8 @@ Hệ thống cho phép người dùng **tải ảnh X-ray**, mô hình sẽ **ph
 
 > 💻 Các notebook chính được thực hiện và chia sẻ công khai trên Kaggle:
 
-* [![Kaggle](https://img.shields.io/badge/Kaggle-Load--Data-blue?logo=kaggle)](https://www.kaggle.com/code/phongnguyen1337/n-m-n-khai-ph-d-li-u#Load-data) – **Phong Nguyen:** Tiền xử lý, huấn luyện và đánh giá mô hình phân loại viêm phổi.
-* [![Kaggle](https://img.shields.io/badge/Kaggle-Grad--CAM-blue?logo=kaggle)](https://www.kaggle.com/code/traanfddinhfkhair/grad-cam) – **Khải Trần:** Giải thích mô hình bằng Grad-CAM và trực quan hóa vùng phổi tổn thương.
+- [![Kaggle](https://img.shields.io/badge/Kaggle-Load--Data-blue?logo=kaggle)](https://www.kaggle.com/code/phongnguyen1337/n-m-n-khai-ph-d-li-u#Load-data) – **Phong Nguyen:** Tiền xử lý, huấn luyện và đánh giá mô hình phân loại viêm phổi.
+- [![Kaggle](https://img.shields.io/badge/Kaggle-Grad--CAM-blue?logo=kaggle)](https://www.kaggle.com/code/traanfddinhfkhair/grad-cam) – **Khải Trần:** Giải thích mô hình bằng Grad-CAM và trực quan hóa vùng phổi tổn thương.
 
 ---
 
@@ -55,9 +55,9 @@ Hệ thống cho phép người dùng **tải ảnh X-ray**, mô hình sẽ **ph
 Xray-Pneumonia-Classification/
 ├── backend/
 │   ├── app.py
-│   ├── utils.py
-│   ├── routes.py
-│   └── models/
+│   ├── start.bat
+│   ├── fix.py
+│
 │
 ├── client/
 │   ├── src/
@@ -74,7 +74,7 @@ Xray-Pneumonia-Classification/
 │
 ├── requirements.txt
 ├── LICENSE
-├── start.bat / start.sh
+|
 └── README.md
 ```
 
@@ -139,13 +139,13 @@ npm start
 
 ### Qua giao diện web:
 
-* Nhấn **Chọn ảnh** → chọn file `.jpg` hoặc `.png`
-* Nhấn **Phân tích**
-* Xem kết quả dự đoán:
+- Nhấn **Chọn ảnh** → chọn file `.jpg` hoặc `.png`
+- Nhấn **Phân tích**
+- Xem kết quả dự đoán:
 
-  * ✅ Nhãn: `PNEUMONIA` hoặc `NORMAL`
-  * 📈 Độ tin cậy
-  * 🔥 Ảnh Grad-CAM hiển thị vùng nghi ngờ
+  - ✅ Nhãn: `PNEUMONIA` hoặc `NORMAL`
+  - 📈 Độ tin cậy
+  - 🔥 Ảnh Grad-CAM hiển thị vùng nghi ngờ
 
 ### Hoặc test bằng curl:
 
@@ -179,16 +179,16 @@ VGG16,0.910,0.926,0.950,0.938,0.975,0.225,0.910,30,2025-10-28 17:38:10
 
 Dưới đây là video demo quá trình phân tích ảnh X-ray và hiển thị Grad-CAM trên giao diện web:
 
-<video src="results/2025-10-28 19-28-48.mkv" controls autoplay loop muted width="700"></video>
+<video src="results/video demo.mp4" controls autoplay loop muted width="700"></video>
 
 ---
 
 ## 🔮 Hướng phát triển
 
-* Bổ sung dữ liệu có nhãn tuyến ức để giảm lỗi nhầm lẫn.
-* Hợp tác với bác sĩ chuyên khoa nhi để đánh giá Grad-CAM.
-* Nâng cấp web cho phép bác sĩ phản hồi và hiệu chỉnh vùng phát hiện.
-* Triển khai Docker hoặc deploy trên cloud (Render, HuggingFace Space, v.v).
+- Bổ sung dữ liệu có nhãn tuyến ức để giảm lỗi nhầm lẫn.
+- Hợp tác với bác sĩ chuyên khoa nhi để đánh giá Grad-CAM.
+- Nâng cấp web cho phép bác sĩ phản hồi và hiệu chỉnh vùng phát hiện.
+- Triển khai Docker hoặc deploy trên cloud (Render, HuggingFace Space, v.v).
 
 ---
 
@@ -212,10 +212,10 @@ Xem chi tiết trong [LICENSE](LICENSE)
 
 ## 🧩 Credits
 
-* Dataset: Paul Mooney – Chest X-Ray Images (Pneumonia)
-* Frameworks: TensorFlow, FastAPI, React
-* Explainability: Grad-CAM
-* Kaggle Notebooks:
+- Dataset: Paul Mooney – Chest X-Ray Images (Pneumonia)
+- Frameworks: TensorFlow, FastAPI, React
+- Explainability: Grad-CAM
+- Kaggle Notebooks:
 
-  * [![Kaggle](https://img.shields.io/badge/Kaggle-Load--Data-blue?logo=kaggle)](https://www.kaggle.com/code/phongnguyen1337/n-m-n-khai-ph-d-li-u#Load-data)
-  * [![Kaggle](https://img.shields.io/badge/Kaggle-Grad--CAM-blue?logo=kaggle)](https://www.kaggle.com/code/traanfddinhfkhair/grad-cam)
+  - [![Kaggle](https://img.shields.io/badge/Kaggle-Load--Data-blue?logo=kaggle)](https://www.kaggle.com/code/phongnguyen1337/n-m-n-khai-ph-d-li-u#Load-data)
+  - [![Kaggle](https://img.shields.io/badge/Kaggle-Grad--CAM-blue?logo=kaggle)](https://www.kaggle.com/code/traanfddinhfkhair/grad-cam)
