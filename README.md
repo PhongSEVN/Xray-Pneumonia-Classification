@@ -177,9 +177,11 @@ VGG16,0.910,0.926,0.950,0.938,0.975,0.225,0.910,30,2025-10-28 17:38:10
 
 ## 🎥 Demo Web App
 
-Dưới đây là video demo quá trình phân tích ảnh X-ray và hiển thị Grad-CAM trên giao diện web:
+Dưới đây là quá trình phân tích ảnh X-ray và hiển thị Grad-CAM trên giao diện web:
 
-👉 [Click here để xem video demo](results/demo.mp4)
+![Demo web app](results/demo.gif)
+
+👉 [Xem video chất lượng cao trên YouTube](https://www.youtube.com/watch?v=ZNc-g-88RRw)
 
 ---
 
