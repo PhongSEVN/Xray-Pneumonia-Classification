@@ -179,7 +179,7 @@ VGG16,0.910,0.926,0.950,0.938,0.975,0.225,0.910,30,2025-10-28 17:38:10
 
 Dưới đây là video demo quá trình phân tích ảnh X-ray và hiển thị Grad-CAM trên giao diện web:
 
-<video src="results/video demo.mp4" controls autoplay loop muted width="700"></video>
+<video src="results/demo.mp4" controls autoplay loop muted width="700"></video>
 
 ---
 
