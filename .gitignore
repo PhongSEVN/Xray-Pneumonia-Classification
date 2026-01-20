@@ -2,3 +2,5 @@ data/chest_xray
 .vscode
 .idea
 configs/__pycache__/
+tensorboard
+models/__pycache__
