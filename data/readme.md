@@ -26,7 +26,7 @@ Sau khi tải và giải nén, hãy đặt dữ liệu vào thư mục `data/` t
 
 ```
 
-data/
+data/chest_xray
 │
 ├── train/
 │   ├── NORMAL/
@@ -43,31 +43,6 @@ data/
 ````
 
 > ⚠️ Nếu dataset không có thư mục `val/`, bạn có thể tự tách từ tập `train/` (ví dụ 80% train – 20% val).
-
----
-
-## ⚙️ Cách sử dụng trong mã nguồn
-
-Sau khi đặt dữ liệu đúng vị trí, bạn có thể khai báo đường dẫn trong Notebook hoặc file huấn luyện như sau:
-
-```python
-url_train = "data/train"
-url_val   = "data/val"
-url_test  = "data/test"
-````
-
-Để tải và xử lý ảnh:
-
-```python
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-train_datagen = ImageDataGenerator(rescale=1./255)
-train_gen = train_datagen.flow_from_directory(
-    url_train,
-    target_size=(224, 224),
-    class_mode='categorical'
-)
-```
 
 ---
 
