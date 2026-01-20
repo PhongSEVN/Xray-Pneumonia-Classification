@@ -1,3 +1,4 @@
-data/*
+data/chest_xray
 .vscode
 .idea
+configs/__pycache__/
