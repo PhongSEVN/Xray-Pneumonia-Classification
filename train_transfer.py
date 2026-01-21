@@ -192,6 +192,6 @@ if __name__ == '__main__':
                     "loss": loss,
                 }
                 print("Best model saved")
-                torch.save(checkpoint, "{}/best_cnn.pt".format(args.model))
+                torch.save(checkpoint, "{}/best_resnet.pt".format(args.model))
                 best_accuracy = accuracy
             # print(classification_report(all_labels, all_predictions))
