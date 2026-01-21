@@ -107,7 +107,7 @@ if __name__ == '__main__':
     writter = SummaryWriter(args.logging)
 
     model = CNN_model().to(device)
-    criterion = nn.CrossEntropyLoss(class_weights)
+    criterion = nn.CrossEntropyLoss(weight=class_weights)
     optimizer = optim.Adam(model.parameters(),lr=0.0001)
 
     if args.checkpoint:
