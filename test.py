@@ -1,69 +1,61 @@
-from argparse import ArgumentParser
+import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
-import numpy as np
+from argparse import ArgumentParser
 import torch
 import cv2
-from torch import nn
+from PIL import Image
+from torchvision.transforms import Compose, Resize, ToTensor, Normalize
 
-from torchsummary import summary
-
+from configs.test_config import CATEGORIES, CHECKPOINT_PATH, IMAGE_PATH
 from configs.train_config import IMG_SIZE
 from models.CNN_model import CNN_model
-from models.resnet import ResNet
 
 
 def get_args():
-    parser = ArgumentParser(description='CNN Training')
-    parser.add_argument("--image_size","-i", type=int, default=IMG_SIZE, help="Number of image size")
-    parser.add_argument("--image_path","-p", type=str, default="", help="Path image")
-    parser.add_argument("--checkpoint","-c", type=str, default="trained_model/best_cnn.pt", help="checkpoint")
-    parser.add_argument("--model_type","-m", type=str, default="resnet", help="Type of model")
+    parser = ArgumentParser(description='X-Ray Pneumonia Classification')
+    parser.add_argument("--image_size", "-i", type=int, default=IMG_SIZE)
+    parser.add_argument("--image_path", "-p", type=str, default=IMAGE_PATH)
+    parser.add_argument("--checkpoint", "-c", type=str, default=CHECKPOINT_PATH)
+    return parser.parse_args()
 
-    args = parser.parse_args()
-    return args
 
-if __name__ == '__main__':
+def main():
     args = get_args()
-
-    if torch.cuda.is_available():
-        device = torch.device('cuda')
-    else:
-        device = torch.device('cpu')
-    if args.model_type == "resnet":
-        model = ResNet().to(device)
-    else:
-        model = CNN_model().to(device)
-
-    categories = ["NORMAL", "PNEUMONIA"]
-
-    # summary(model, input_size=(3, args.image_size, args.image_size))
-    if args.checkpoint:
-        checkpoint = torch.load(args.checkpoint)
-        model.load_state_dict(checkpoint['model'])
-    else:
-        print("No checkpoint file found")
-        exit(0)
-
+    
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    model = CNN_model().to(device)
+    checkpoint = torch.load(args.checkpoint, map_location=device)
+    model.load_state_dict(checkpoint['model'])
     model.eval()
-    ori_image = cv2.imread(args.image_path)
-    image = cv2.cvtColor(ori_image, cv2.COLOR_RGB2BGR)
-    image = cv2.resize(image, (args.image_size, args.image_size))
-    image = np.transpose(image, (2, 0, 1))/255.0
-    image = image[None,:,:,:] # Tensor 4 chiều 1x2x224x224
-    image = torch.from_numpy(image).to(device).float()
-    softmax=nn.Softmax()
+    
+    mean = [0.485, 0.456, 0.406]
+    std = [0.229, 0.224, 0.225]
+    transform = Compose([
+        Resize((args.image_size, args.image_size)),
+        ToTensor(),
+        Normalize(mean, std)
+    ])
+    
+    image = Image.open(args.image_path).convert('RGB')
+    tensor = transform(image).unsqueeze(0).to(device)
 
     with torch.no_grad():
-        output = model(image)
-        print(output)
-        probs = softmax(output)
-        print(probs)
-    max_idx = torch.argmax(probs) # or output
-    predicted_class = categories[max_idx]
-    print(predicted_class)
-
-    # cv2.imshow("{}:{:.2f}%".format(predicted_class, probs[0, max_idx]),ori_image)
-    show_img = cv2.resize(ori_image, (800, 600))
-    cv2.imshow("{}:{:.2f}%".format(predicted_class, probs[0, max_idx]), show_img)
-
+        output = model(tensor)
+        probs = torch.softmax(output, dim=1)
+    
+    confidence, idx = torch.max(probs, dim=1)
+    predicted_class = CATEGORIES[idx.item()]
+    
+    print(f"\nResult: {predicted_class} ({confidence.item():.2%})")
+    
+    img = cv2.imread(args.image_path)
+    img = cv2.resize(img, (600, 600))
+    cv2.imshow(f"{predicted_class} - {confidence.item():.2%}", img)
     cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,5 +1,0 @@
-model_name,accuracy,precision,recall,f1_score,macro_avg_precision,macro_avg_recall,macro_avg_f1,weighted_avg_precision,weighted_avg_recall,weighted_avg_f1,support
-CNN,0.90,0.91,0.88,0.89,0.91,0.88,0.89,0.90,0.90,0.90,624
-DenseNet121,0.90,0.91,0.88,0.89,0.91,0.88,0.89,0.90,0.90,0.90,624
-ResNet50,0.89,0.92,0.86,0.87,0.92,0.86,0.87,0.90,0.89,0.89,624
-EfficientNetB3,0.90,0.92,0.87,0.89,0.92,0.87,0.89,0.91,0.90,0.90,624

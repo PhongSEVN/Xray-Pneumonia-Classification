@@ -4,3 +4,4 @@ data/chest_xray
 configs/__pycache__/
 tensorboard
 models/__pycache__
+temp
