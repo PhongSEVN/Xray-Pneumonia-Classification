@@ -40,14 +40,14 @@ chest_xray/
 ![Confusion Matrix](results/cnn_cm.png)
 
 ### Transfer Learning using Resnet
-- (To be updated)
-- Expected improvement with pretrained backbones
+- Best validation accuracy: **92.63%** at epoch 11
+- Training on GPU (CUDA)
 
-[//]: # (Example visualizations:)
+![Training Loss](results/loss_resnet.png)  
 
-[//]: # (![Training Loss]&#40;results/loss.png&#41;  )
+![Confusion Matrix](results/resnet_cm.png)
 
-[//]: # (![Confusion Matrix]&#40;results/cnn_cm.png&#41;)
+I have done resnet but cant push on Github because the size file is to big (109MB)
 
 ---
 
